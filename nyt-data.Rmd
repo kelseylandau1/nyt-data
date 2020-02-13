@@ -26,7 +26,8 @@ head(iowa_counties_all)
 ```
 
 Pivot the data from wide to long. Consider why the arguments candidate and votes are in quotes, but name is not.
-
+## -name is telling it to make it long for all columns except name; can also use without the minus to tell it to include data
+## quotes are because the column doesn't exist yet and we're telling it to create those
 ```{r}
 iowa_counties_long <- iowa_counties_all %>% 
   pivot_longer(cols = c(-name), names_to = "candidate", values_to = "votes")
@@ -69,7 +70,9 @@ head(nh_counties_all)
 Test your knowledge: Write the code to pivot the New Hampshire data to a longer form, then back. Note the inclusion of the FIPS code, which is unique to each county, changes the code"
 
 ```{r}
-
+nh_counties_long <- nh_counties_all %>%
+  pivot_longer(cols = c(-name, -fips), names_to = "candidate", values_to = "votes")
+head(nh_counties_long, n=36)
 
 ```
 
